@@ -1,3 +1,6 @@
+#include<bits/stdc++.h>
+using namespace std;
+
 class Solution {
 public:
     long lcm(long a, long b){
@@ -35,3 +38,4 @@ public:
         return ans;
     }
 };
+
