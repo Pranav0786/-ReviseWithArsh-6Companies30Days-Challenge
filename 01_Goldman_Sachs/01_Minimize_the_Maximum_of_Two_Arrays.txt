@@ -1,5 +1,4 @@
-#include<bits/stdc++.h>
-using namespace std;
+LeetCode 2513
 
 class Solution {
 public:
