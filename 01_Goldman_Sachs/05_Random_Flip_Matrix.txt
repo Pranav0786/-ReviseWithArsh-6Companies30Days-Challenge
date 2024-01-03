@@ -1,0 +1,36 @@
+LeetCode 519
+
+class Solution {
+public:
+    set<pair<int,int>>st ;
+    int m,n ;
+    Solution(int m, int n) {
+        this-> m  = m ;
+        this->n = n ;
+
+    }
+    
+    vector<int> flip() {
+        int x = rand() % m;
+        int y = rand() % n ;
+        while(st.find({x,y}) != st.end() )
+        {
+            x = rand() % m ;
+            y = rand() % n ;
+        }  
+
+        st.insert({x,y}) ;
+        return {x,y} ;
+    }
+    
+    void reset() {
+        st.clear() ;
+    }
+};
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution* obj = new Solution(m, n);
+ * vector<int> param_1 = obj->flip();
+ * obj->reset();
+ */
