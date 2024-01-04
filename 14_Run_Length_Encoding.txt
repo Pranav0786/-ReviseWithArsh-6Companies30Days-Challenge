@@ -1,0 +1,36 @@
+GFG
+
+
+string encode(string src)
+{     
+    //Your code here 
+    string ans = "" ;
+    
+    stack<char> st ;
+    
+    int i = 0 ;
+    while( i < src.size()+1 )
+    {
+        if( !st.empty() && src[i] != st.top() )
+        {
+            int count = 0 ;
+            while( !st.empty() )
+            {
+                count++ ;
+                st.pop() ;
+            }
+            
+            ans.push_back( src[i-1] ) ;
+            ans.push_back( count + '0' ) ;
+        }
+        
+        else
+        {
+            st.push( src[i] ) ;
+            i++ ;
+        }
+        
+    }
+    return ans ;
+    
+}     
