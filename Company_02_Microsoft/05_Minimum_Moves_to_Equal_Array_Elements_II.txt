@@ -1,0 +1,21 @@
+LeetCode 462
+
+class Solution {
+public:
+    int minMoves2(vector<int>& nums) {
+        
+        sort( nums.begin() , nums.end() ) ;
+
+        int size = nums.size() ;
+        int index = ( size%2 == 0 ) ? size/2 : (size+1)/2 ; 
+        int avg = nums[index-1] ;
+
+        int ans = 0 ;
+        for( int i = 0 ; i < nums.size() ; i++ )
+        {
+            ans += abs( nums[i] - avg ) ;
+        }
+
+        return ans ;
+    }
+};

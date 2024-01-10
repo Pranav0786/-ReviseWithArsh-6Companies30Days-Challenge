@@ -1,0 +1,82 @@
+LeetCode 1823
+
+class Solution {
+public:
+    class Node
+    {
+        public:
+        int data ;
+        Node* prev ;
+        Node* next ;
+
+        Node( int data )
+        {
+            this->data = data ;
+            this->prev = NULL ;
+            this->next = NULL ;
+        }
+    };
+
+    int getlen( Node* head )
+    {
+        if( head->next == NULL && head->prev == NULL )
+            return 1 ;
+
+        Node* temp = head->next ;
+        Node* start = head ;
+        int len = 0 ;
+
+        while( temp != start )
+        {
+            len++ ;
+            temp = temp->next ;
+        }
+
+        return len+1 ;
+    }
+
+    int findTheWinner(int n, int k) {
+        
+        // create circle 
+        Node* head = new Node(1) ;
+        Node* tail = head ;
+
+        int i = 2 ;
+        while( i <= n )
+        {
+            Node* temp = new Node(i) ;
+            tail->next = temp ;
+            temp->prev = tail ;
+            tail = tail->next ;
+            i++ ;
+        }
+
+        tail->next = head ;
+        head->prev = tail ;
+
+        // run loop
+
+        while( getlen(head) != 1 )
+        {
+            int j = 1 ;
+            while( j != k )
+            {
+                head = head->next ;
+                j++ ;
+            }
+
+            Node* del = head ;
+            head = head->next ;
+            head->prev = del->prev ;
+            del->prev->next = head ;
+            
+            del->next = NULL ;
+            del->prev = NULL ;
+
+            delete del ;
+        }
+
+        int ans = head->data ;
+        return ans ;
+    }
+};
