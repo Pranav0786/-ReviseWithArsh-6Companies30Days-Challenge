@@ -1,0 +1,49 @@
+// LeetCode 2099
+
+class Solution {
+public:
+    int get_min( vector<int> ans )
+    {
+        int index = -1 ; 
+        int num = INT_MAX ;
+
+        for( int i = 0 ; i < ans.size() ; i++ )
+        {
+            if( ans[i] <= num )
+            {
+                num = ans[i] ;
+                index = i ;
+            }
+        }
+        return index ;
+    }
+
+    vector<int> maxSubsequence(vector<int>& nums, int k) {
+        
+        if( k >= nums.size() ) return nums ;
+
+        vector<int> ans(k) ;
+
+        int i = 0 , j = 0 ;
+        while( i < k )
+            ans[i++] = nums[j++] ;
+
+        int index = get_min( ans ) ;
+
+        while( i < nums.size() )
+        {
+            if( nums[i] > ans[index] ) 
+            {
+                swap( nums[i] , ans[index] ) ;
+
+                for( int i = index ; i < ans.size()-1 ; i++ )
+                    swap( ans[i] , ans[i+1] ) ;
+                
+                index = get_min( ans ) ;
+            }
+            i++ ;
+        }
+        return ans ;
+
+    }
+};

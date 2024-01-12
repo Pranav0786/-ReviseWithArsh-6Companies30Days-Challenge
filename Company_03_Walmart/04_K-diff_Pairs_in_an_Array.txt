@@ -1,0 +1,27 @@
+// LeetCode 532
+
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+        
+        set<pair<int, int>> p;
+
+        for (int i = 0; i < nums.size(); i++) 
+        {
+            for (int j = i + 1; j < nums.size(); j++) 
+            {
+                if (abs(nums[i] - nums[j]) == k) 
+                {
+                    pair<int, int> temp = {nums[i], nums[j]} ;
+                    if (p.count(temp) == 0 && p.count({temp.second, temp.first}) == 0)  
+                        p.insert(temp);
+                    
+                }
+            }
+        }
+
+        int ans = p.size();
+        return ans;
+        
+    }
+};
